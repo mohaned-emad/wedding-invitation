@@ -44,52 +44,31 @@
        aria-label="Click to open your invitation / اضغط لفتح الدعوة"
        onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
 
-    <!-- Kraft paper base -->
+    <!-- Real envelope photo as base -->
     <div class="envelope-body"></div>
 
-    <!-- Four paper flaps -->
-    <div class="flap-left"></div>
-    <div class="flap-right"></div>
-    <div class="flap-bottom"></div>
+    <!-- Inner card (peeks out before opening) -->
+    <div class="envelope-inner"></div>
 
-    <!-- Top flap (flips open) -->
+    <!-- Top flap (flips open on click) -->
     <div class="envelope-flap">
       <div class="flap-top-front"></div>
       <div class="flap-top-back"></div>
     </div>
 
-    <!-- Fold seam overlays -->
-    <div class="envelope-seams">
-      <div class="seam-left"></div>
-      <div class="seam-right"></div>
-    </div>
-
-    <!-- Inner card (peeks out) -->
-    <div class="envelope-inner"></div>
-
-    <!-- Postage stamp (top right) -->
-    <div class="envelope-stamp" aria-hidden="true">
-      <span class="stamp-heart">♥</span>
-      <span class="stamp-year">2026</span>
-    </div>
-
-    <!-- Address lines (bottom left) -->
-    <div class="envelope-address" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </div>
-
-    <!-- Wax Seal — image-based -->
+    <!-- Wax Seal with M & N initials -->
     <div class="wax-seal" aria-hidden="true">
-      <img src="assets/images/wax_seal.jpg" alt="" class="seal-img" />
+      <img src="assets/images/wax_seal.jpg" alt="M and N wax seal" class="seal-img" />
       <div class="seal-ring"></div>
       <div class="seal-ring-2"></div>
     </div>
 
-    <!-- Open prompt -->
-    <div class="open-prompt">
-      <p>Click to Open Your Invitation</p>
-      <p class="ar">اضغط لفتح دعوتك</p>
-    </div>
+  </div>
+
+  <!-- Open prompt (below envelope) -->
+  <div class="open-prompt">
+    <p>Click to Open Your Invitation</p>
+    <p class="ar">اضغط لفتح دعوتك</p>
   </div>
 </div>
 
@@ -115,10 +94,9 @@
       <p class="invite-title-ar arabic reveal reveal-delay-2">يسرّنا دعوتكم لحضور حفل زفافنا</p>
       <p class="invite-title reveal reveal-delay-3">to celebrate the marriage of</p>
 
-      <!-- Couple illustrations -->
+      <!-- Combined couple illustration (holding hands) -->
       <div class="couple-illustration reveal reveal-delay-4" aria-hidden="true">
-        <img src="assets/images/groom.jpg" alt="Groom illustration" class="figure-groom" />
-        <img src="assets/images/bride.jpg" alt="Bride illustration" class="figure-bride" />
+        <img src="assets/images/couple.jpg" alt="Mostafa and Nada illustration" class="figure-couple" />
       </div>
 
       <!-- Couple names -->

@@ -41,20 +41,15 @@
 
   /* ── Envelope ── */
   .envelope-wrapper {
-    width: min(310px, 85vw);
-    height: min(230px, 62vw);
+    width: min(360px, 88vw);
   }
-  .wax-seal { width: 70px; height: 70px; }
-  .seal-body { width: 70px; height: 70px; }
-  .seal-initials { font-size: 1.1rem; }
+  .wax-seal { width: clamp(70px, 16%, 90px); }
 
   /* ── Couple illustration ── */
   .couple-illustration {
-    gap: var(--space-6);
     margin: var(--space-6) 0;
   }
-  .figure-groom, .figure-bride { width: 90px; }
-  .couple-illustration::before { font-size: 1.5rem; }
+  .figure-couple { width: clamp(240px, 85vw, 360px); }
 
   /* ── Details ── */
   #section-details { padding: var(--space-12) var(--space-4); }

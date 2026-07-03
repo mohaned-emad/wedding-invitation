@@ -149,9 +149,10 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: var(--space-12);
   margin: var(--space-8) 0;
   position: relative;
+  width: 100%;
+  max-width: 700px;
 }
 
 .couple-illustration::before {
@@ -160,36 +161,28 @@
   top: 30%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--burgundy);
-  opacity: 0.3;
+  opacity: 0.2;
   animation: heartbeat 2s ease-in-out infinite;
 }
 
 @keyframes heartbeat {
-  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
-  50%       { transform: translateX(-50%) scale(1.2); opacity: 0.6; }
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.2; }
+  50%       { transform: translateX(-50%) scale(1.25); opacity: 0.45; }
 }
 
-.figure-groom,
-.figure-bride {
-  width: clamp(90px, 14vw, 160px);
+.figure-couple {
+  width: clamp(280px, 70vw, 580px);
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 8px 20px rgba(109,31,52,0.2));
+  filter: drop-shadow(0 8px 24px rgba(109,31,52,0.15));
+  animation: coupleFloat 6s ease-in-out infinite;
 }
 
-.figure-groom {
-  animation: figureFloat 5s ease-in-out infinite;
-}
-.figure-bride {
-  animation: figureFloat 5s ease-in-out infinite reverse;
-  animation-delay: 0.5s;
-}
-
-@keyframes figureFloat {
+@keyframes coupleFloat {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
+  50%       { transform: translateY(-7px); }
 }
 
 /* ── Wedding of text ── */

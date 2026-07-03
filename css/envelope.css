@@ -1,7 +1,8 @@
 /* ================================================================
-   ENVELOPE — Vintage Kraft Paper Design (Phase 1)
-   Inspired by real paper envelopes: visible fold seams,
-   kraft texture, realistic wax seal with wedding rings.
+   ENVELOPE — Image-based realistic vintage envelope
+   The envelope body IS the real photo. The wax seal is
+   overlaid as an image. The flap animation uses a CSS mask
+   that reveals/hides the top-flap portion of the image.
    ================================================================ */
 
 /* ── Scene wrapper ── */
@@ -9,9 +10,12 @@
   position: fixed;
   inset: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at center, #EDE0CC 0%, #D9C9A8 40%, #C4B08A 100%);
+  gap: 0;
+  /* Warm linen background matching the envelope photo's surface */
+  background: radial-gradient(ellipse at center, #EDE4D0 0%, #D9CDB0 50%, #C9B898 100%);
   z-index: var(--z-overlay);
   transition: opacity 1s var(--ease-smooth), transform 1s var(--ease-smooth);
   overflow: hidden;
@@ -19,425 +23,297 @@
 
 #envelope-scene.fade-out {
   opacity: 0;
-  transform: scale(1.04);
+  transform: scale(1.05);
   pointer-events: none;
 }
 
-/* ── Ambient pampas/feather light background ── */
+/* Fine linen texture overlay */
 #envelope-scene::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(circle at 5% 50%,  rgba(255,255,255,0.25) 0%, transparent 35%),
-    radial-gradient(circle at 95% 50%, rgba(255,255,255,0.20) 0%, transparent 35%),
-    radial-gradient(circle at 50% 5%,  rgba(255,255,255,0.15) 0%, transparent 25%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
   pointer-events: none;
 }
 
-/* Fine linen/paper grain texture overlay */
+/* Soft vignette */
 #envelope-scene::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(100,80,40,0.18) 100%);
   pointer-events: none;
-  opacity: 0.5;
 }
 
-/* ── Floating ambient petals ── */
+/* ── Floating ambient dust particles ── */
 .bg-petal {
   position: absolute;
-  width: 8px;
-  height: 14px;
-  border-radius: 50% 0 50% 0;
-  background: rgba(201, 168, 76, 0.2);
-  opacity: 0.3;
-  animation: floatPetal var(--duration, 8s) var(--delay, 0s) ease-in-out infinite;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.5);
+  pointer-events: none;
+  animation: dustFloat var(--duration, 10s) var(--delay, 0s) ease-in-out infinite;
 }
 
-@keyframes floatPetal {
-  0%   { transform: translateY(0) rotate(0deg);    opacity: 0.15; }
-  50%  { transform: translateY(-50px) rotate(120deg); opacity: 0.35; }
-  100% { transform: translateY(0) rotate(240deg);  opacity: 0.15; }
+@keyframes dustFloat {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.2; }
+  25%  { transform: translateY(-30px) translateX(8px) scale(1.3); opacity: 0.5; }
+  75%  { transform: translateY(-15px) translateX(-6px) scale(0.8); opacity: 0.3; }
 }
 
-/* ═══════════════════════════════════════════════
-   MAIN ENVELOPE STRUCTURE
-═══════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   ENVELOPE CONTAINER
+══════════════════════════════════════════════ */
 
 .envelope-wrapper {
   position: relative;
-  width: min(460px, 88vw);
-  height: min(340px, 65vw);
+  width: min(500px, 88vw);
+  /* Maintain aspect ratio of real envelope photo (1304×876 ≈ 3:2) */
+  aspect-ratio: 3 / 2;
   cursor: pointer;
-  /* Natural drop shadow — like paper on a surface */
-  filter: drop-shadow(0 20px 60px rgba(80, 50, 20, 0.35)) drop-shadow(0 4px 12px rgba(80,50,20,0.2));
-  transition: transform 0.4s var(--ease-spring), filter 0.4s var(--ease-smooth);
-  transform-style: preserve-3d;
-  perspective: 800px;
+  /* Natural paper drop-shadow */
+  filter:
+    drop-shadow(0 6px 20px rgba(60, 40, 10, 0.30))
+    drop-shadow(0 20px 60px rgba(60, 40, 10, 0.22));
+  transition: transform 0.5s var(--ease-spring), filter 0.4s var(--ease-smooth);
 }
 
 .envelope-wrapper:hover {
-  transform: translateY(-10px) rotate(0.5deg);
-  filter: drop-shadow(0 32px 80px rgba(80, 50, 20, 0.4)) drop-shadow(0 6px 16px rgba(80,50,20,0.25));
+  transform: translateY(-10px) rotate(0.8deg) scale(1.015);
+  filter:
+    drop-shadow(0 10px 30px rgba(60, 40, 10, 0.38))
+    drop-shadow(0 30px 80px rgba(60, 40, 10, 0.28));
 }
 
-/* Stop float when opening */
+/* Idle float */
+@keyframes envelopeFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  40%       { transform: translateY(-10px) rotate(0.5deg); }
+  70%       { transform: translateY(-5px) rotate(-0.3deg); }
+}
+.envelope-wrapper:not(:hover):not(.opening) {
+  animation: envelopeFloat 5s ease-in-out infinite;
+}
 .envelope-wrapper.opening {
   animation: none !important;
   cursor: default;
   pointer-events: none;
 }
 
-/* ── Idle gentle float ── */
-@keyframes envelopeFloat {
-  0%, 100% { transform: translateY(0)   rotate(0deg); }
-  33%       { transform: translateY(-8px) rotate(0.3deg); }
-  66%       { transform: translateY(-4px) rotate(-0.2deg); }
-}
-.envelope-wrapper:not(:hover):not(.opening) {
-  animation: envelopeFloat 5s ease-in-out infinite;
-}
+/* ══════════════════════════════════════════════
+   ENVELOPE IMAGE — The real photo as background
+══════════════════════════════════════════════ */
 
-/* ── Envelope Body — the main kraft paper base ── */
+/* Bottom part of envelope (always visible) */
 .envelope-body {
   position: absolute;
   inset: 0;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
-
-  /* Layered kraft paper color */
-  background:
-    /* Fine paper grain noise */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E"),
-    /* Base kraft gradient */
-    linear-gradient(158deg, #D4B896 0%, #C8A87E 25%, #BF9D72 50%, #C9A87E 75%, #D2B490 100%);
+  /* The real envelope image */
+  background-image: url('../assets/images/envelope_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* ── Four triangular paper flaps (classic envelope fold) ── */
-
-/* --- LEFT FLAP --- */
-.flap-left {
+/* Subtle paper aging overlay */
+.envelope-body::after {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 50%;
+  inset: 0;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E"),
-    linear-gradient(158deg, #CBB088 0%, #B8956A 100%);
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  /* Subtle shadow along the fold seam */
-  filter: drop-shadow(2px 0 3px rgba(80,50,15,0.18));
+    radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(80, 55, 20, 0.06) 100%);
 }
 
-/* --- RIGHT FLAP --- */
-.flap-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 50%;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E"),
-    linear-gradient(338deg, #CBB088 0%, #BFA070 100%);
-  clip-path: polygon(100% 0, 0 50%, 100% 100%);
-  filter: drop-shadow(-2px 0 3px rgba(80,50,15,0.15));
-}
+/* ══════════════════════════════════════════════
+   ENVELOPE FLAP — Top portion that flips up
+   Uses clip-path to isolate the top-triangle area
+   of the envelope image, then rotates it open.
+══════════════════════════════════════════════ */
 
-/* --- BOTTOM FLAP --- */
-.flap-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60%;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E"),
-    linear-gradient(0deg, #C5A070 0%, #D2B080 100%);
-  clip-path: polygon(0 100%, 50% 0, 100% 100%);
-  filter: drop-shadow(0 -2px 3px rgba(80,50,15,0.12));
-}
-
-/* --- TOP FLAP (opens on interaction) --- */
 .envelope-flap {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 62%;
+  inset: 0;
   z-index: calc(var(--z-card) + 2);
   transform-origin: top center;
   transform-style: preserve-3d;
-  /* Smooth realistic flip */
-  transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 6px 6px 0 0;
 }
 
-/* Front face of top flap */
+/* Front face: the top-triangle of the envelope photo */
 .flap-top-front {
   position: absolute;
   inset: 0;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E"),
-    linear-gradient(180deg, #C8A87E 0%, #BF9D70 50%, #D2B48C 100%);
-  clip-path: polygon(0 0, 100% 0, 50% 78%);
+  background-image: url('../assets/images/envelope_bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  /* Clip to only show the top-flap triangle portion */
+  clip-path: polygon(0% 0%, 100% 0%, 50% 52%);
   backface-visibility: hidden;
-  /* Fold crease line along flap edges */
-  border-bottom: 1px solid rgba(150, 100, 40, 0.25);
+  border-radius: 6px 6px 0 0;
 }
 
-/* Interior face of top flap (seen when open) */
+/* Back face: cream interior paper revealed when open */
 .flap-top-back {
   position: absolute;
   inset: 0;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
-    linear-gradient(180deg, #E8D5B8 0%, #DFC9A8 100%);
-  clip-path: polygon(0 0, 100% 0, 50% 78%);
+  background: linear-gradient(175deg, #F8F1E4 0%, #EFE3CA 60%, #E8D9BB 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 50% 52%);
   transform: rotateX(180deg);
   backface-visibility: hidden;
+  border-radius: 6px 6px 0 0;
+  /* Paper grain on interior */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
+    linear-gradient(175deg, #F8F1E4 0%, #EFE3CA 60%, #E8D9BB 100%);
 }
 
-/* Inner paper (cream card peeking out) */
+/* Inner card peeking out — slides up on open */
 .envelope-inner {
   position: absolute;
-  bottom: 16px;
-  left: 12px;
-  right: 12px;
-  height: 60%;
-  background: linear-gradient(160deg, #FDF8F0 0%, #F5EDD8 100%);
-  border-radius: 2px;
+  bottom: 10%;
+  left: 8%;
+  right: 8%;
+  height: 55%;
+  background: linear-gradient(165deg, #FDFAF4 0%, #F7EDD8 100%);
+  border-radius: 3px;
   z-index: 1;
   box-shadow:
-    0 -2px 8px rgba(80,50,20,0.1),
-    inset 0 1px 2px rgba(255,255,255,0.8);
-  transition: transform 1.4s var(--ease-spring), opacity 0.6s var(--ease-smooth);
+    0 -2px 12px rgba(80,50,10,0.12),
+    inset 0 0 0 0.5px rgba(201,168,76,0.25);
+  transition: transform 1.5s var(--ease-spring), opacity 0.7s var(--ease-smooth);
   transform-origin: bottom center;
-  /* Subtle inner border suggesting paper */
-  border: 0.5px solid rgba(200,168,100,0.3);
+  overflow: hidden;
 }
 
-/* Tiny postage-stamp style decoration on the inner card */
-.envelope-inner::after {
-  content: '♥ M & N ♥';
+/* M & N monogram on peeking card */
+.envelope-inner::before {
+  content: '— M & N —';
   position: absolute;
-  top: 20px;
+  top: 22px;
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-accent);
-  font-size: 1.1rem;
-  color: rgba(109, 31, 52, 0.35);
+  font-size: 1.3rem;
+  color: rgba(109, 31, 52, 0.3);
   white-space: nowrap;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
-/* ── FOLD SEAM LINES — thin dark lines where flaps meet ── */
-/* Diagonal seams — left-to-center and right-to-center */
-.envelope-seams {
+/* Small floral ornament on peeking card */
+.envelope-inner::after {
+  content: '✦ ✦ ✦';
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 3;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.5rem;
+  color: rgba(201, 168, 76, 0.4);
+  letter-spacing: 0.5em;
+  white-space: nowrap;
 }
 
-.envelope-seams::before,
-.envelope-seams::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-}
+/* ══════════════════════════════════════════════
+   OPEN ANIMATION STATE
+══════════════════════════════════════════════ */
 
-/* Left diagonal crease */
-.seam-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  /* 50% of height x 50% of width */
-  border-width: 100% 0 0 50%;
-  border-color: transparent transparent transparent rgba(100, 65, 20, 0.14);
-  pointer-events: none;
-  z-index: 4;
-}
-
-/* Right diagonal crease */
-.seam-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 0 100% 50%;
-  border-color: transparent transparent rgba(100, 65, 20, 0.11) transparent;
-  pointer-events: none;
-  z-index: 4;
-}
-
-/* ══════════════════════════════════════════
-   OPEN ANIMATION STATES
-══════════════════════════════════════════ */
 .envelope-wrapper.opening .envelope-flap {
-  transform: rotateX(-175deg);
+  transform: rotateX(-180deg);
 }
 
 .envelope-wrapper.opening .envelope-inner {
-  transform: translateY(-230%) scale(1.03);
+  transform: translateY(-210%) scale(1.04);
   opacity: 0;
-  transition-delay: 0.5s;
+  transition-delay: 0.55s;
 }
 
-/* ═══════════════════════════════════════════════
-   WAX SEAL — Image-based, realistic
-═══════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   WAX SEAL — Image overlaid precisely in center
+══════════════════════════════════════════════ */
+
 .wax-seal {
   position: absolute;
+  /* Center on the fold point — slightly below center */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: calc(var(--z-card) + 6);
-  width: 110px;
-  height: 110px;
+  width: clamp(90px, 20%, 120px);
+  aspect-ratio: 1;
   cursor: pointer;
   transition: transform 0.4s var(--ease-spring), filter 0.4s;
-  /* Make the seal appear pressed into the paper */
-  filter: drop-shadow(0 3px 10px rgba(80,50,10,0.4));
+  filter: drop-shadow(0 3px 12px rgba(60,35,5,0.45));
 }
 
 .wax-seal:hover {
-  transform: translate(-50%, -50%) scale(1.1) rotate(-2deg);
-  filter: drop-shadow(0 6px 20px rgba(80,50,10,0.5)) drop-shadow(0 0 15px rgba(201,168,76,0.4));
+  transform: translate(-50%, -50%) scale(1.1) rotate(-3deg);
+  filter: drop-shadow(0 6px 20px rgba(60,35,5,0.55)) drop-shadow(0 0 18px rgba(201,168,76,0.45));
 }
 
-/* The actual wax seal image */
 .seal-img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  /* Slight color grade to match kraft palette */
-  filter: sepia(0.1) saturate(1.1);
+  display: block;
 }
 
-/* Pulsing hover ring */
+/* Pulsing invitation rings */
 .seal-ring {
   position: absolute;
-  inset: -8px;
+  inset: -10px;
   border-radius: 50%;
-  border: 1.5px solid rgba(201, 168, 76, 0.5);
-  animation: sealRingPulse 2.5s ease-in-out infinite;
+  border: 1.5px solid rgba(201, 168, 76, 0.45);
+  animation: sealPulse 2.8s ease-in-out infinite;
 }
 
 .seal-ring-2 {
   position: absolute;
-  inset: -16px;
+  inset: -20px;
   border-radius: 50%;
-  border: 1px solid rgba(201, 168, 76, 0.25);
-  animation: sealRingPulse 2.5s ease-in-out 0.6s infinite;
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  animation: sealPulse 2.8s ease-in-out 0.7s infinite;
 }
 
-@keyframes sealRingPulse {
-  0%, 100% { opacity: 0.4; transform: scale(1);    }
-  50%       { opacity: 0.9; transform: scale(1.05); }
+@keyframes sealPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.9;  transform: scale(1.06); }
 }
 
-/* ── Open prompt ── */
+/* ══════════════════════════════════════════════
+   OPEN PROMPT — Below the envelope
+══════════════════════════════════════════════ */
+
 .open-prompt {
-  position: absolute;
-  bottom: -68px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 28px;
   text-align: center;
-  white-space: nowrap;
 }
 
 .open-prompt p {
   font-family: var(--font-display);
-  font-size: clamp(0.7rem, 1.8vw, 0.85rem);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(80, 50, 20, 0.6);
+  font-size: clamp(0.7rem, 1.8vw, 0.88rem);
   font-style: italic;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(80, 55, 20, 0.65);
   animation: promptFloat 3s ease-in-out infinite;
+  margin: 0;
 }
 
 .open-prompt .ar {
   font-family: var(--font-arabic);
-  letter-spacing: 0;
-  font-size: clamp(0.8rem, 2vw, 1rem);
-  margin-top: 3px;
-  color: rgba(80, 50, 20, 0.5);
-  animation-delay: 0.4s;
+  letter-spacing: 0.03em;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  margin-top: 4px;
+  color: rgba(80, 55, 20, 0.55);
+  font-style: normal;
+  animation-delay: 0.5s;
 }
 
 @keyframes promptFloat {
   0%, 100% { opacity: 0.55; transform: translateY(0); }
   50%       { opacity: 1;    transform: translateY(-5px); }
 }
-
-/* ── Postmark / stamp decoration (top-right corner) ── */
-.envelope-stamp {
-  position: absolute;
-  top: 14px;
-  right: 18px;
-  z-index: 5;
-  width: 52px;
-  height: 42px;
-  border: 1.5px solid rgba(109, 31, 52, 0.4);
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1px;
-  /* Perforated edge illusion */
-  background:
-    repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(109,31,52,0.08) 4px, rgba(109,31,52,0.08) 5px) top / 100% 2px no-repeat,
-    repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(109,31,52,0.08) 4px, rgba(109,31,52,0.08) 5px) bottom / 100% 2px no-repeat,
-    repeating-linear-gradient(0deg,  transparent, transparent 4px, rgba(109,31,52,0.08) 4px, rgba(109,31,52,0.08) 5px) left  / 2px 100% no-repeat,
-    repeating-linear-gradient(0deg,  transparent, transparent 4px, rgba(109,31,52,0.08) 4px, rgba(109,31,52,0.08) 5px) right / 2px 100% no-repeat,
-    rgba(253, 246, 238, 0.6);
-  opacity: 0.8;
-}
-
-.stamp-heart {
-  font-size: 1rem;
-  color: var(--burgundy);
-  line-height: 1;
-  opacity: 0.7;
-}
-
-.stamp-year {
-  font-family: var(--font-display);
-  font-size: 0.5rem;
-  letter-spacing: 0.15em;
-  color: var(--burgundy);
-  opacity: 0.6;
-  font-style: italic;
-}
-
-/* ── Address lines ── */
-.envelope-address {
-  position: absolute;
-  bottom: 22px;
-  left: 22px;
-  z-index: 5;
-  opacity: 0.45;
-}
-
-.envelope-address span {
-  display: block;
-  width: 70px;
-  height: 1.5px;
-  background: rgba(80, 50, 20, 0.4);
-  margin-bottom: 5px;
-  border-radius: 1px;
-}
-.envelope-address span:nth-child(2) { width: 54px; }
-.envelope-address span:nth-child(3) { width: 62px; }
