@@ -14,7 +14,7 @@
   let isPlaying = false;
 
   // Public domain wedding music — Pachelbel's Canon in D (Musopen CDN)
-  const MUSIC_URL = 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Pachelbel%27s_Canon_in_D_Major.ogg';
+  const MUSIC_URL = 'assets/music/The_Piano_Guys_-_A_Thousand_Years_Cover_Christina_Perri_Song_KLICKAUD.mp3';
 
   // Fallback to another public domain source if above fails
   const MUSIC_FALLBACK = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';

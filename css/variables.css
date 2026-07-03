@@ -3,7 +3,8 @@
    Change any value here to retheme the entire invitation.
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Pinyon+Script&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=El+Messiri:wght@400;500;600;700&family=Aref+Ruqaa:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Pinyon+Script&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://db.onlinewebfonts.com/c/09a2b2476bae6681a86d24e43bfc781b?family=Diwani+Letter');
 
 :root {
   /* ── Color Palette ── */
@@ -37,7 +38,7 @@
   --font-display:   'Cormorant Garamond', 'Georgia', serif;
   --font-accent:    'Pinyon Script', cursive;
   --font-body:      'Crimson Text', 'Georgia', serif;
-  --font-arabic:    'El Messiri', 'Arial', sans-serif;
+  --font-arabic:    'Diwani Letter', 'Georgia', serif;
 
   /* ── Font Sizes (fluid) ── */
   --text-xs:    clamp(0.7rem,  1.5vw, 0.8rem);
