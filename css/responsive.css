@@ -30,14 +30,15 @@
   }
 
   .corner-ornament {
-    width: 60px;
-    height: 60px;
-    top: 10px;
-    left: 10px;
+    width: clamp(90px, 25vw, 120px);
+    height: auto;
   }
-  .corner-ornament.top-right { top: 10px; right: 10px; }
-  .corner-ornament.bottom-left { bottom: 10px; left: 10px; }
-  .corner-ornament.bottom-right { bottom: 10px; right: 10px; }
+  
+  /* Slight inset for mobile if desired, though 0 from invitation.css is fine */
+  .top-left { top: 10px; left: 10px; }
+  .top-right { top: 10px; right: 10px; }
+  .bottom-left { bottom: 10px; left: 10px; }
+  .bottom-right { bottom: 10px; right: 10px; }
 
   /* ── Envelope ── */
   .envelope-wrapper {
