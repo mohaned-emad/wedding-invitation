@@ -44,11 +44,18 @@
        aria-label="Click to open your invitation / اضغط لفتح الدعوة"
        onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
 
-    <!-- Real envelope photo as base -->
-    <div class="envelope-body"></div>
+    <!-- Envelope back (inside) -->
+    <div class="envelope-back"></div>
 
-    <!-- Inner card (peeks out before opening) -->
+    <!-- Inner card (peeks out) -->
     <div class="envelope-inner"></div>
+
+    <!-- Envelope front (bottom and side flaps) -->
+    <div class="envelope-front">
+      <div class="flap-left"></div>
+      <div class="flap-right"></div>
+      <div class="flap-bottom"></div>
+    </div>
 
     <!-- Top flap (flips open on click) -->
     <div class="envelope-flap">
@@ -83,10 +90,10 @@
     <section id="section-hero">
 
       <!-- Corner ornaments -->
-      <img src="assets/images/floral.jpg" alt="" class="corner-ornament top-left"    aria-hidden="true" />
-      <img src="assets/images/floral.jpg" alt="" class="corner-ornament top-right"   aria-hidden="true" />
-      <img src="assets/images/floral.jpg" alt="" class="corner-ornament bottom-left" aria-hidden="true" />
-      <img src="assets/images/floral.jpg" alt="" class="corner-ornament bottom-right"aria-hidden="true" />
+      <img src="assets/images/floral_corner.jpg" alt="" class="corner-ornament top-left"    aria-hidden="true" />
+      <img src="assets/images/floral_corner.jpg" alt="" class="corner-ornament top-right"   aria-hidden="true" />
+      <img src="assets/images/floral_corner.jpg" alt="" class="corner-ornament bottom-left" aria-hidden="true" />
+      <img src="assets/images/floral_corner.jpg" alt="" class="corner-ornament bottom-right"aria-hidden="true" />
 
       <!-- Pre-title bilingual -->
       <p class="pre-title-ar reveal">بسم الله الرحمن الرحيم</p>

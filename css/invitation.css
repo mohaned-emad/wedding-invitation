@@ -49,20 +49,20 @@
   z-index: var(--z-base);
 }
 
-/* ── Corner ornaments ── */
+/* ── Corner Ornaments ── */
 .corner-ornament {
   position: absolute;
-  width: clamp(80px, 12vw, 150px);
-  height: clamp(80px, 12vw, 150px);
+  width: clamp(120px, 20vw, 220px);
+  opacity: 0.85;
   pointer-events: none;
-  opacity: 0.7;
-  object-fit: contain;
+  z-index: 0;
+  mix-blend-mode: multiply; /* Removes white background from ornament */
 }
-.corner-ornament.top-left    { top: 20px;    left: 20px;    }
-.corner-ornament.top-right   { top: 20px;    right: 20px;   transform: scaleX(-1); }
-.corner-ornament.bottom-left { bottom: 20px; left: 20px;    transform: scaleY(-1); }
-.corner-ornament.bottom-right{ bottom: 20px; right: 20px;   transform: scale(-1);  }
 
+.top-left { top: 0; left: 0; }
+.top-right { top: 0; right: 0; transform: scaleX(-1); }
+.bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }
+.bottom-right { bottom: 0; right: 0; transform: scale(-1, -1); }
 /* ── Pre-title ── */
 .pre-title {
   font-family: var(--font-display);
@@ -176,6 +176,8 @@
   width: clamp(280px, 70vw, 580px);
   height: auto;
   object-fit: contain;
+  /* Multiply removes the white background from the image */
+  mix-blend-mode: multiply;
   filter: drop-shadow(0 8px 24px rgba(109,31,52,0.15));
   animation: coupleFloat 6s ease-in-out infinite;
 }
