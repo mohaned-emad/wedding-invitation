@@ -1,0 +1,293 @@
+/* ================================================================
+   ENVELOPE — Phase 1 Landing Animation
+   ================================================================ */
+
+/* ── Scene wrapper ── */
+#envelope-scene {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-cream);
+  z-index: var(--z-overlay);
+  transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+}
+
+#envelope-scene.fade-out {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+/* ── Ambient particles background ── */
+#envelope-scene::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(201, 168, 76, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(109, 31, 52, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 50% 10%, rgba(232, 180, 192, 0.1) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+/* ── Floating petal particles in background ── */
+.bg-petal {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50% 0;
+  background: var(--blush);
+  opacity: 0.25;
+  animation: floatPetal var(--duration, 8s) var(--delay, 0s) ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes floatPetal {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.2; }
+  50%  { transform: translateY(-40px) rotate(180deg) scale(1.2); opacity: 0.35; }
+  100% { transform: translateY(0) rotate(360deg) scale(1); opacity: 0.2; }
+}
+
+/* ── Main envelope wrapper ── */
+.envelope-wrapper {
+  position: relative;
+  width: min(380px, 90vw);
+  height: min(280px, 65vw);
+  cursor: pointer;
+  filter: drop-shadow(var(--shadow-xl));
+  transition: transform 0.4s var(--ease-spring), filter 0.4s var(--ease-smooth);
+}
+
+.envelope-wrapper:hover {
+  transform: translateY(-8px) scale(1.02);
+  filter: drop-shadow(0 24px 60px rgba(44, 26, 26, 0.35));
+}
+
+.envelope-wrapper:active {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* ── Envelope body ── */
+.envelope-body {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-envelope);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Inner bottom triangle (V-shape) */
+.envelope-body::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(160deg, var(--burgundy-light) 0%, var(--burgundy-dark) 100%);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+/* Side triangles overlay for 3D effect */
+.envelope-body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom-right, transparent 48%, rgba(0,0,0,0.12) 52%) 0 0 / 50% 100% no-repeat,
+    linear-gradient(to bottom-left,  transparent 48%, rgba(0,0,0,0.12) 52%) 100% 0 / 50% 100% no-repeat;
+}
+
+/* ── Envelope inner paper visible before open ── */
+.envelope-inner {
+  position: absolute;
+  bottom: 20px;
+  left: 16px;
+  right: 16px;
+  height: 65%;
+  background: linear-gradient(160deg, var(--cream) 0%, var(--cream-dark) 100%);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
+  z-index: 1;
+  transition: transform 1.4s var(--ease-spring), opacity 0.6s var(--ease-smooth);
+  transform-origin: bottom center;
+}
+
+/* ── Envelope flap (top) ── */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  z-index: var(--z-card);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  transition: transform 1s var(--ease-smooth);
+}
+
+.envelope-flap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, var(--burgundy-light) 0%, var(--burgundy) 50%, var(--burgundy-dark) 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 80%);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* Flap inner face (lighter — shows on back when flipped) */
+.envelope-flap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, var(--cream-dark) 0%, var(--cream) 60%);
+  clip-path: polygon(0 0, 100% 0, 50% 80%);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transform: rotateX(180deg);
+  backface-visibility: visible;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* ── Open state ── */
+.envelope-wrapper.opening .envelope-flap {
+  transform: rotateX(-170deg);
+}
+
+.envelope-wrapper.opening .envelope-inner {
+  transform: translateY(-220%) scale(1.02);
+  opacity: 0;
+  transition-delay: 0.4s;
+}
+
+/* ── Wax Seal ── */
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: calc(var(--z-card) + 5);
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-smooth);
+}
+
+.wax-seal:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.5);
+}
+
+.wax-seal:hover .seal-ring {
+  animation: sealPulse 1s var(--ease-smooth) infinite;
+}
+
+.seal-body {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--gradient-wax);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.4),
+    inset 0 2px 4px rgba(255,200,200,0.2),
+    inset 0 -2px 4px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.seal-body::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201, 168, 76, 0.5);
+}
+
+/* Small decorative dots around rim */
+.seal-body::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 50% 15%, rgba(255,255,255,0.15) 0%, transparent 20%),
+    radial-gradient(circle at 85% 50%, rgba(0,0,0,0.2) 0%, transparent 20%),
+    radial-gradient(circle at 50% 85%, rgba(0,0,0,0.15) 0%, transparent 20%);
+}
+
+.seal-initials {
+  font-family: var(--font-accent);
+  font-size: 1.4rem;
+  color: var(--gold-shine);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  z-index: 1;
+  position: relative;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.seal-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(201, 168, 76, 0.4);
+  transition: all 0.3s;
+}
+
+@keyframes sealPulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; border-color: rgba(201, 168, 76, 0.4); }
+  50%       { transform: scale(1.08); opacity: 0.8; border-color: rgba(201, 168, 76, 0.8); }
+}
+
+/* ── Prompt text below envelope ── */
+.open-prompt {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.open-prompt p {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-medium);
+  animation: promptFloat 3s ease-in-out infinite;
+}
+
+.open-prompt .ar {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+  font-size: var(--text-sm);
+  margin-top: 2px;
+  animation-delay: 0.3s;
+}
+
+@keyframes promptFloat {
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50%       { opacity: 1;   transform: translateY(-4px); }
+}
+
+/* ── Idle envelope float ── */
+@keyframes envelopeFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+.envelope-wrapper:not(:hover):not(.opening) {
+  animation: envelopeFloat 4s ease-in-out infinite;
+}
+
+/* Opening: stop float, begin interaction */
+.envelope-wrapper.opening {
+  animation: none !important;
+  cursor: default;
+  pointer-events: none;
+}

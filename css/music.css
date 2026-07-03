@@ -1,0 +1,54 @@
+/* ================================================================
+   MUSIC PLAYER — Floating toggle button
+   ================================================================ */
+
+#music-toggle {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gradient-gold);
+  border: none;
+  cursor: pointer;
+  z-index: var(--z-music);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: var(--shadow-gold), var(--shadow-md);
+  transition: all var(--trans-base);
+  color: var(--burgundy-dark);
+}
+
+#music-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-glow), var(--shadow-lg);
+}
+
+#music-toggle:active { transform: scale(0.95); }
+
+/* ── Playing animation: pulsing ring ── */
+#music-toggle.playing::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(201,168,76,0.5);
+  animation: musicRing 1.5s ease-out infinite;
+}
+
+#music-toggle.playing::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201,168,76,0.25);
+  animation: musicRing 1.5s ease-out 0.4s infinite;
+}
+
+@keyframes musicRing {
+  0%   { transform: scale(1);    opacity: 0.8; }
+  100% { transform: scale(1.4);  opacity: 0; }
+}

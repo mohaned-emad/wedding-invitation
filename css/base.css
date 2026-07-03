@@ -1,0 +1,180 @@
+/* ================================================================
+   BASE — Reset, Global Styles, Typography
+   ================================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-dark);
+  background: var(--cream);
+  overflow-x: hidden;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.invitation-open {
+  overflow-y: auto;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dark); }
+
+/* ── Selection ── */
+::selection {
+  background: var(--blush);
+  color: var(--burgundy-dark);
+}
+
+/* ── Images ── */
+img { max-width: 100%; display: block; }
+
+/* ── Links ── */
+a {
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: color var(--trans-fast);
+}
+a:hover { color: var(--burgundy); }
+
+/* ── Typography Utilities ── */
+.font-display  { font-family: var(--font-display); }
+.font-accent   { font-family: var(--font-accent); }
+.font-body     { font-family: var(--font-body); }
+.font-arabic   { font-family: var(--font-arabic); }
+
+.text-center   { text-align: center; }
+.text-right    { text-align: right; }
+.text-left     { text-align: left; }
+
+.text-burgundy { color: var(--burgundy); }
+.text-gold     { color: var(--gold); }
+.text-blush    { color: var(--blush); }
+.text-light    { color: var(--text-light); }
+
+.gold-text {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Reveal animations (for scroll-triggered) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ── RTL & Bilingual support ── */
+[lang="ar"], .arabic {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  text-align: center;
+}
+
+/* ── Divider ── */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: var(--space-8) auto;
+  max-width: 400px;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.ornament-divider .diamond {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--gold-light);
+}
+
+/* ── Section base ── */
+section {
+  position: relative;
+}
+
+/* ── Button base ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-8);
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--trans-base);
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background var(--trans-fast);
+}
+.btn:hover::after { background: rgba(255,255,255,0.08); }
+.btn:active { transform: scale(0.97); }
+
+.btn-gold {
+  background: var(--gradient-gold);
+  color: var(--burgundy-dark);
+  box-shadow: var(--shadow-gold);
+}
+.btn-gold:hover {
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+  color: var(--burgundy-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+}
+.btn-outline:hover {
+  background: var(--gold);
+  color: var(--burgundy-dark);
+  box-shadow: var(--shadow-gold);
+}

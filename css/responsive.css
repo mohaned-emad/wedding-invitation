@@ -1,0 +1,140 @@
+/* ================================================================
+   RESPONSIVE — Media queries for all breakpoints
+   ================================================================ */
+
+/* ── Tablet (≤1024px) ── */
+@media (max-width: 1024px) {
+  .couple-illustration {
+    gap: var(--space-8);
+  }
+  .figure-groom,
+  .figure-bride {
+    width: clamp(80px, 13vw, 130px);
+  }
+  .details-card {
+    padding: var(--space-12) var(--space-8);
+  }
+}
+
+/* ── Mobile (≤768px) ── */
+@media (max-width: 768px) {
+  #section-hero {
+    padding: var(--space-12) var(--space-6);
+    min-height: auto;
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+
+  .couple-names {
+    font-size: clamp(3rem, 12vw, 4.5rem);
+  }
+
+  .corner-ornament {
+    width: 60px;
+    height: 60px;
+    top: 10px;
+    left: 10px;
+  }
+  .corner-ornament.top-right { top: 10px; right: 10px; }
+  .corner-ornament.bottom-left { bottom: 10px; left: 10px; }
+  .corner-ornament.bottom-right { bottom: 10px; right: 10px; }
+
+  /* ── Envelope ── */
+  .envelope-wrapper {
+    width: min(310px, 85vw);
+    height: min(230px, 62vw);
+  }
+  .wax-seal { width: 70px; height: 70px; }
+  .seal-body { width: 70px; height: 70px; }
+  .seal-initials { font-size: 1.1rem; }
+
+  /* ── Couple illustration ── */
+  .couple-illustration {
+    gap: var(--space-6);
+    margin: var(--space-6) 0;
+  }
+  .figure-groom, .figure-bride { width: 90px; }
+  .couple-illustration::before { font-size: 1.5rem; }
+
+  /* ── Details ── */
+  #section-details { padding: var(--space-12) var(--space-4); }
+  .details-card {
+    padding: var(--space-10) var(--space-6);
+    border-radius: var(--radius-lg);
+  }
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  /* ── Countdown ── */
+  #section-countdown { padding: var(--space-12) var(--space-4); }
+  .countdown-grid { gap: var(--space-3); }
+  .countdown-box {
+    width: clamp(70px, 20vw, 90px);
+    height: clamp(70px, 20vw, 90px);
+  }
+  .countdown-number { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+
+  /* ── Gallery ── */
+  #section-gallery { padding: var(--space-12) var(--space-4); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+
+  /* ── Timeline ── */
+  #section-timeline { padding: var(--space-12) var(--space-4); }
+  .timeline-track::before { left: 20px; }
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 52px;
+  }
+  .timeline-dot { left: 20px; top: 0; }
+  .timeline-content { max-width: 100%; }
+
+  /* ── Quote ── */
+  #section-quote { padding: var(--space-12) var(--space-4); }
+  .quote-text { font-size: var(--text-3xl); }
+
+  /* ── Dress code ── */
+  #section-dresscode { padding: var(--space-12) var(--space-4); }
+  .dresscode-swatches { gap: var(--space-6); }
+  .dresscode-swatch { width: 50px; height: 50px; }
+
+  /* ── Music btn ── */
+  #music-toggle {
+    bottom: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  /* ── Map button ── */
+  .map-btn { padding: var(--space-4) var(--space-8); font-size: var(--text-xs); }
+}
+
+/* ── Small Mobile (≤480px) ── */
+@media (max-width: 480px) {
+  .envelope-wrapper {
+    width: min(280px, 88vw);
+    height: min(200px, 58vw);
+  }
+  .gallery-grid { grid-template-columns: 1fr; max-width: 300px; margin: var(--space-8) auto 0; }
+  .countdown-grid { gap: var(--space-2); }
+  .countdown-unit { gap: var(--space-2); }
+}
+
+/* ── Large Desktop (≥1400px) ── */
+@media (min-width: 1400px) {
+  .details-card { max-width: 1000px; }
+  .timeline-inner { max-width: 800px; }
+  .quote-inner { max-width: 800px; }
+}
+
+/* ── Print ── */
+@media print {
+  #envelope-scene, #music-toggle, #particles-canvas { display: none !important; }
+  #invitation-main { display: block !important; opacity: 1 !important; }
+  body { background: white; }
+}

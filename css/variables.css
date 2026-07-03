@@ -1,0 +1,102 @@
+/* ================================================================
+   WEDDING INVITATION — DESIGN SYSTEM / THEME VARIABLES
+   Change any value here to retheme the entire invitation.
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap');
+
+:root {
+  /* ── Color Palette ── */
+  --burgundy:       #6D1F34;
+  --burgundy-dark:  #4A1122;
+  --burgundy-light: #8B2E47;
+  --blush:          #E8B4C0;
+  --blush-light:    #F5D8DF;
+  --blush-pale:     #FDF0F3;
+  --cream:          #FDF6EE;
+  --cream-dark:     #F5EAD8;
+  --gold:           #C9A84C;
+  --gold-light:     #E4C97B;
+  --gold-dark:      #A07830;
+  --gold-shine:     #F0D98A;
+  --text-dark:      #2C1A1A;
+  --text-medium:    #5C3D3D;
+  --text-light:     #9E7070;
+  --white:          #FFFFFF;
+  --black:          #000000;
+
+  /* ── Gradients ── */
+  --gradient-gold:       linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-shine) 40%, var(--gold) 60%, var(--gold-dark) 100%);
+  --gradient-burgundy:   linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 50%, var(--burgundy-light) 100%);
+  --gradient-blush:      linear-gradient(135deg, var(--blush-pale) 0%, var(--blush-light) 50%, var(--blush) 100%);
+  --gradient-cream:      linear-gradient(160deg, #FDF6EE 0%, #F9EFE2 40%, #F5E6D5 100%);
+  --gradient-envelope:   linear-gradient(160deg, #8B2E47 0%, #6D1F34 40%, #4A1122 100%);
+  --gradient-wax:        radial-gradient(circle at 35% 35%, #C9534F 0%, #8B1A1A 40%, #5C0F0F 100%);
+
+  /* ── Typography ── */
+  --font-display:   'Playfair Display', 'Georgia', serif;
+  --font-accent:    'Great Vibes', cursive;
+  --font-body:      'Montserrat', 'Helvetica Neue', sans-serif;
+  --font-arabic:    'Tajawal', 'Arial', sans-serif;
+
+  /* ── Font Sizes (fluid) ── */
+  --text-xs:    clamp(0.7rem,  1.5vw, 0.8rem);
+  --text-sm:    clamp(0.85rem, 2vw,   1rem);
+  --text-base:  clamp(0.95rem, 2.5vw, 1.1rem);
+  --text-lg:    clamp(1.1rem,  3vw,   1.35rem);
+  --text-xl:    clamp(1.3rem,  3.5vw, 1.6rem);
+  --text-2xl:   clamp(1.6rem,  4vw,   2rem);
+  --text-3xl:   clamp(2rem,    5vw,   2.8rem);
+  --text-4xl:   clamp(2.5rem,  6vw,   3.8rem);
+  --text-5xl:   clamp(3rem,    7vw,   5rem);
+  --text-hero:  clamp(3.5rem,  9vw,   7rem);
+
+  /* ── Spacing ── */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+
+  /* ── Border Radius ── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:   0 2px 8px rgba(109, 31, 52, 0.08);
+  --shadow-md:   0 4px 20px rgba(109, 31, 52, 0.15);
+  --shadow-lg:   0 8px 40px rgba(109, 31, 52, 0.2);
+  --shadow-xl:   0 16px 60px rgba(109, 31, 52, 0.25);
+  --shadow-gold: 0 4px 20px rgba(201, 168, 76, 0.35);
+  --shadow-glow: 0 0 30px rgba(201, 168, 76, 0.4);
+  --shadow-card: 0 20px 80px rgba(44, 26, 26, 0.2), 0 4px 16px rgba(44, 26, 26, 0.1);
+
+  /* ── Transitions ── */
+  --ease-smooth:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --ease-in:      cubic-bezier(0.4, 0, 1, 1);
+  --trans-fast:   150ms var(--ease-smooth);
+  --trans-base:   300ms var(--ease-smooth);
+  --trans-slow:   600ms var(--ease-smooth);
+  --trans-xslow:  1200ms var(--ease-smooth);
+
+  /* ── Z-Index Scale ── */
+  --z-base:       1;
+  --z-card:       10;
+  --z-envelope:   20;
+  --z-overlay:    30;
+  --z-particles:  40;
+  --z-music:      50;
+  --z-modal:      100;
+}

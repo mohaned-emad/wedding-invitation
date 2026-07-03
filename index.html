@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="You are cordially invited to the wedding of Mostafa & Nada — Friday, August 14, 2026 at Zomorodah Wedding Venue, Shubra Al Kheimah, Egypt." />
+  <meta property="og:title"       content="Mostafa & Nada — Wedding Invitation" />
+  <meta property="og:description" content="Join us for our special day — August 14, 2026 | دعوة زفاف مصطفى و ندى" />
+  <meta property="og:type"        content="website" />
+  <meta name="theme-color"        content="#6D1F34" />
+  <title>Mostafa & Nada — Wedding Invitation | دعوة زفاف</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/envelope.css" />
+  <link rel="stylesheet" href="css/invitation.css" />
+  <link rel="stylesheet" href="css/music.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  PHASE 1: ENVELOPE SCENE                ║
+     ╚══════════════════════════════════════════╝ -->
+<div id="envelope-scene" role="main" aria-label="Wedding invitation envelope">
+
+  <!-- Decorative floating petals -->
+  <div class="bg-petal" style="top:15%;left:10%;--duration:9s;--delay:0s;"></div>
+  <div class="bg-petal" style="top:30%;left:85%;--duration:11s;--delay:1s;"></div>
+  <div class="bg-petal" style="top:70%;left:20%;--duration:8s;--delay:2s;"></div>
+  <div class="bg-petal" style="top:60%;left:75%;--duration:12s;--delay:0.5s;"></div>
+  <div class="bg-petal" style="top:80%;left:50%;--duration:10s;--delay:3s;"></div>
+  <div class="bg-petal" style="top:10%;left:55%;--duration:13s;--delay:1.5s;"></div>
+  <div class="bg-petal" style="top:50%;left:5%;--duration:7s;--delay:4s;"></div>
+  <div class="bg-petal" style="top:40%;left:92%;--duration:9.5s;--delay:2.5s;"></div>
+
+  <!-- Envelope -->
+  <div class="envelope-wrapper" id="envelope-wrapper" role="button" tabindex="0"
+       aria-label="Click to open your invitation / اضغط لفتح الدعوة"
+       onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+
+    <div class="envelope-body"></div>
+    <div class="envelope-inner"></div>
+    <div class="envelope-flap"></div>
+
+    <!-- Wax Seal -->
+    <div class="wax-seal" aria-hidden="true">
+      <div class="seal-body">
+        <span class="seal-initials">M &amp; N</span>
+      </div>
+      <div class="seal-ring"></div>
+    </div>
+
+    <!-- Open prompt -->
+    <div class="open-prompt">
+      <p>Click to Open Your Invitation</p>
+      <p class="ar">اضغط لفتح دعوتك</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  PHASE 2: MAIN INVITATION               ║
+     ╚══════════════════════════════════════════╝ -->
+<div id="invitation-main" aria-label="Wedding invitation">
+  <div class="invitation-page">
+
+    <!-- ══ HERO / HEADER ══════════════════════════════════ -->
+    <section id="section-hero">
+
+      <!-- Corner ornaments -->
+      <img src="assets/images/floral.jpg" alt="" class="corner-ornament top-left"    aria-hidden="true" />
+      <img src="assets/images/floral.jpg" alt="" class="corner-ornament top-right"   aria-hidden="true" />
+      <img src="assets/images/floral.jpg" alt="" class="corner-ornament bottom-left" aria-hidden="true" />
+      <img src="assets/images/floral.jpg" alt="" class="corner-ornament bottom-right"aria-hidden="true" />
+
+      <!-- Pre-title bilingual -->
+      <p class="pre-title-ar reveal">بسم الله الرحمن الرحيم</p>
+      <p class="pre-title reveal reveal-delay-1">— You Are Cordially Invited —</p>
+      <p class="invite-title-ar arabic reveal reveal-delay-2">يسرّنا دعوتكم لحضور حفل زفافنا</p>
+      <p class="invite-title reveal reveal-delay-3">to celebrate the marriage of</p>
+
+      <!-- Couple illustrations -->
+      <div class="couple-illustration reveal reveal-delay-4" aria-hidden="true">
+        <img src="assets/images/groom.jpg" alt="Groom illustration" class="figure-groom" />
+        <img src="assets/images/bride.jpg" alt="Bride illustration" class="figure-bride" />
+      </div>
+
+      <!-- Couple names -->
+      <h1 class="reveal reveal-delay-5">
+        <span class="couple-names" lang="en">Mostafa</span>
+        <span class="couple-and">&amp;</span>
+        <span class="couple-names" lang="en">Nada</span>
+      </h1>
+      <p class="couple-names-ar arabic reveal" lang="ar">مصطفى و ندى</p>
+
+      <!-- Ornament divider -->
+      <div class="ornament-divider reveal">
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+      </div>
+
+      <!-- Date teaser -->
+      <p class="wedding-of reveal">14 · 08 · 2026</p>
+
+    </section>
+
+
+    <!-- ══ EVENT DETAILS ══════════════════════════════════ -->
+    <section id="section-details">
+      <div class="details-card reveal">
+
+        <span class="section-eyebrow">The Details</span>
+        <span class="section-eyebrow-ar arabic">تفاصيل الحفل</span>
+        <h2 class="section-heading">Join Us</h2>
+        <p class="section-heading-ar arabic">نحتفل معكم</p>
+
+        <div class="details-grid">
+
+          <!-- Date -->
+          <div class="detail-item reveal reveal-delay-1">
+            <div class="detail-icon" aria-hidden="true">📅</div>
+            <span class="detail-label">Date</span>
+            <span class="detail-label-ar arabic">التاريخ</span>
+            <span class="detail-value">Friday, August 14, 2026</span>
+            <span class="detail-value-ar arabic">الجمعة، ١٤ أغسطس ٢٠٢٦</span>
+          </div>
+
+          <!-- Time -->
+          <div class="detail-item reveal reveal-delay-2">
+            <div class="detail-icon" aria-hidden="true">⏰</div>
+            <span class="detail-label">Time</span>
+            <span class="detail-label-ar arabic">الوقت</span>
+            <span class="detail-value">7:00 PM</span>
+            <span class="detail-value-ar arabic">الساعة السابعة مساءً</span>
+          </div>
+
+          <!-- Venue -->
+          <div class="detail-item reveal reveal-delay-3">
+            <div class="detail-icon" aria-hidden="true">🏛️</div>
+            <span class="detail-label">Venue</span>
+            <span class="detail-label-ar arabic">المكان</span>
+            <span class="detail-value">قاعة الزمردة</span>
+            <span class="detail-value" style="font-size: var(--text-base);">Zomorodah Wedding Venue</span>
+            <span class="detail-value-ar arabic">شبرا الخيمة، القليوبية</span>
+          </div>
+
+        </div>
+
+        <!-- Map CTA -->
+        <div class="map-cta reveal">
+          <a href="https://maps.app.goo.gl/9T3RMUX7PjwwxXGfA"
+             target="_blank" rel="noopener noreferrer"
+             class="map-btn"
+             id="btn-map"
+             aria-label="View location on Google Maps">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+            </svg>
+            Get Directions
+          </a>
+          <span class="map-btn-ar arabic" style="color:var(--text-light);font-size:var(--text-sm)">الحصول على الاتجاهات</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══ COUNTDOWN TIMER ════════════════════════════════ -->
+    <section id="section-countdown">
+      <div class="countdown-inner">
+        <h2 class="countdown-title reveal">Counting Down to Forever</h2>
+        <p class="countdown-title-ar arabic reveal reveal-delay-1">العد التنازلي للأبد</p>
+
+        <div class="ornament-divider reveal reveal-delay-2" style="border-color:rgba(201,168,76,0.3);">
+          <div class="diamond"></div>
+        </div>
+
+        <!-- Grid populated by countdown.js -->
+        <div class="countdown-grid" id="countdown-grid"></div>
+
+        <!-- Shown when wedding day arrives -->
+        <p class="celebration-msg" id="countdown-celebration">
+          🎊 Today is the Day! اليوم هو اليوم! 🎊
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ══ PHOTO GALLERY (Placeholder) ══════════════════ -->
+    <section id="section-gallery">
+      <div class="gallery-inner">
+        <span class="section-eyebrow reveal">Our Moments</span>
+        <span class="section-eyebrow-ar arabic reveal reveal-delay-1">لحظاتنا</span>
+        <h2 class="section-heading reveal reveal-delay-2">A Love Story in Photos</h2>
+        <p class="section-heading-ar arabic reveal reveal-delay-3">قصة حب في صور</p>
+
+        <div class="gallery-grid">
+          <div class="gallery-placeholder reveal reveal-delay-1">
+            <span class="placeholder-icon">📷</span>
+            <span class="placeholder-text">Add Photo</span>
+            <span class="placeholder-text-ar arabic">أضف صورة</span>
+          </div>
+          <div class="gallery-placeholder reveal reveal-delay-2">
+            <span class="placeholder-icon">📷</span>
+            <span class="placeholder-text">Add Photo</span>
+            <span class="placeholder-text-ar arabic">أضف صورة</span>
+          </div>
+          <div class="gallery-placeholder reveal reveal-delay-3">
+            <span class="placeholder-icon">📷</span>
+            <span class="placeholder-text">Add Photo</span>
+            <span class="placeholder-text-ar arabic">أضف صورة</span>
+          </div>
+          <div class="gallery-placeholder reveal reveal-delay-1">
+            <span class="placeholder-icon">📷</span>
+            <span class="placeholder-text">Add Photo</span>
+            <span class="placeholder-text-ar arabic">أضف صورة</span>
+          </div>
+          <div class="gallery-placeholder reveal reveal-delay-2">
+            <span class="placeholder-icon">📷</span>
+            <span class="placeholder-text">Add Photo</span>
+            <span class="placeholder-text-ar arabic">أضف صورة</span>
+          </div>
+          <div class="gallery-placeholder reveal reveal-delay-3">
+            <span class="placeholder-icon">📷</span>
+            <span class="placeholder-text">Add Photo</span>
+            <span class="placeholder-text-ar arabic">أضف صورة</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══ LOVE STORY TIMELINE (Placeholder) ════════════ -->
+    <section id="section-timeline">
+      <div class="timeline-inner">
+        <span class="section-eyebrow reveal">Our Story</span>
+        <span class="section-eyebrow-ar arabic reveal reveal-delay-1">قصتنا</span>
+        <h2 class="section-heading reveal reveal-delay-2">How It All Began</h2>
+        <p class="section-heading-ar arabic reveal reveal-delay-3">كيف بدأت القصة</p>
+
+        <div class="timeline-track">
+
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">Date Placeholder</div>
+              <p class="timeline-text">The day we first met…</p>
+              <p class="timeline-text-ar arabic">اليوم الذي التقينا فيه أول مرة…</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal reveal-delay-1">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">Date Placeholder</div>
+              <p class="timeline-text">Our first date…</p>
+              <p class="timeline-text-ar arabic">موعدنا الأول…</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal reveal-delay-2">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">Date Placeholder</div>
+              <p class="timeline-text">The moment I knew…</p>
+              <p class="timeline-text-ar arabic">اللحظة التي أيقنت فيها…</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal reveal-delay-3">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">August 14, 2026</div>
+              <p class="timeline-text">Forever begins ♥</p>
+              <p class="timeline-text-ar arabic">يبدأ الأبد ♥</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══ SPECIAL QUOTE / MESSAGE (Placeholder) ════════ -->
+    <section id="section-quote">
+      <div class="quote-inner">
+        <div class="ornament-divider reveal" style="margin-bottom:var(--space-8);">
+          <div class="diamond"></div>
+        </div>
+
+        <!-- Replace this quote with your own -->
+        <p class="quote-text reveal reveal-delay-1">
+          "Two souls, one heart."
+        </p>
+        <p class="quote-text-ar arabic reveal reveal-delay-2" lang="ar">
+          «وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا»
+        </p>
+
+        <div class="ornament-divider reveal reveal-delay-3">
+          <div class="diamond"></div>
+        </div>
+
+        <span class="quote-placeholder reveal reveal-delay-4">
+          ✎ Replace with your personal message
+        </span>
+
+      </div>
+    </section>
+
+
+    <!-- ══ DRESS CODE (Placeholder) ══════════════════════ -->
+    <section id="section-dresscode">
+      <div class="dresscode-inner">
+        <span class="section-eyebrow reveal">Attire</span>
+        <span class="section-eyebrow-ar arabic reveal reveal-delay-1">كود اللباس</span>
+        <h2 class="section-heading reveal reveal-delay-2">Dress Code</h2>
+        <p class="section-heading-ar arabic reveal reveal-delay-3">الزي المناسب</p>
+
+        <!-- Color swatches — update colors to match your dress code -->
+        <div class="dresscode-swatches reveal reveal-delay-4">
+          <div class="dresscode-swatch" style="background:#6D1F34;" data-color="Burgundy"></div>
+          <div class="dresscode-swatch" style="background:#E8B4C0;" data-color="Blush"></div>
+          <div class="dresscode-swatch" style="background:#FDF6EE;" data-color="Cream"></div>
+          <div class="dresscode-swatch" style="background:#C9A84C;" data-color="Gold"></div>
+          <div class="dresscode-swatch" style="background:#2C1A1A;" data-color="Black"></div>
+        </div>
+
+        <p class="dresscode-note reveal" style="margin-top:var(--space-16);">
+          Formal / Black Tie Preferred
+        </p>
+        <p class="dresscode-note-ar arabic reveal reveal-delay-1">
+          يُفضَّل الزي الرسمي الفاخر
+        </p>
+        <p style="color:var(--text-light);font-size:var(--text-xs);margin-top:var(--space-4);font-family:var(--font-body);letter-spacing:0.1em;" class="reveal reveal-delay-2">
+          ✎ Replace with your dress code details
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- ══ FOOTER ════════════════════════════════════════ -->
+    <footer id="section-footer">
+      <div class="ornament-divider" style="margin-bottom:var(--space-8);border-color:rgba(201,168,76,0.2);">
+        <div class="diamond"></div>
+      </div>
+
+      <p class="footer-monogram">M &amp; N</p>
+      <p class="footer-hearts">♥  ♥  ♥</p>
+      <p class="footer-date">August 14, 2026 · أغسطس ١٤، ٢٠٢٦</p>
+      <p class="footer-date" style="margin-top:var(--space-2);font-size:0.65rem;opacity:0.3;">
+        Zomorodah Wedding Venue · Shubra Al Kheimah, Egypt
+      </p>
+    </footer>
+
+  </div><!-- /.invitation-page -->
+</div><!-- /#invitation-main -->
+
+
+<!-- ── Floating Music Toggle ── -->
+<button id="music-toggle" aria-label="Play music / تشغيل الموسيقى" title="Toggle Music">♩</button>
+
+
+<!-- ── JavaScript (deferred) ── -->
+<script src="js/particles.js" defer></script>
+<script src="js/animations.js" defer></script>
+<script src="js/music.js"     defer></script>
+<script src="js/countdown.js" defer></script>
+<script src="js/envelope.js"  defer></script>
+
+</body>
+</html>
