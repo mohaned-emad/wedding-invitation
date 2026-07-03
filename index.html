@@ -44,16 +44,45 @@
        aria-label="Click to open your invitation / اضغط لفتح الدعوة"
        onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
 
+    <!-- Kraft paper base -->
     <div class="envelope-body"></div>
-    <div class="envelope-inner"></div>
-    <div class="envelope-flap"></div>
 
-    <!-- Wax Seal -->
+    <!-- Four paper flaps -->
+    <div class="flap-left"></div>
+    <div class="flap-right"></div>
+    <div class="flap-bottom"></div>
+
+    <!-- Top flap (flips open) -->
+    <div class="envelope-flap">
+      <div class="flap-top-front"></div>
+      <div class="flap-top-back"></div>
+    </div>
+
+    <!-- Fold seam overlays -->
+    <div class="envelope-seams">
+      <div class="seam-left"></div>
+      <div class="seam-right"></div>
+    </div>
+
+    <!-- Inner card (peeks out) -->
+    <div class="envelope-inner"></div>
+
+    <!-- Postage stamp (top right) -->
+    <div class="envelope-stamp" aria-hidden="true">
+      <span class="stamp-heart">♥</span>
+      <span class="stamp-year">2026</span>
+    </div>
+
+    <!-- Address lines (bottom left) -->
+    <div class="envelope-address" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+
+    <!-- Wax Seal — image-based -->
     <div class="wax-seal" aria-hidden="true">
-      <div class="seal-body">
-        <span class="seal-initials">M &amp; N</span>
-      </div>
+      <img src="assets/images/wax_seal.jpg" alt="" class="seal-img" />
       <div class="seal-ring"></div>
+      <div class="seal-ring-2"></div>
     </div>
 
     <!-- Open prompt -->

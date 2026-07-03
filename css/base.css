@@ -20,9 +20,10 @@ body {
   color: var(--text-dark);
   background: var(--cream);
   overflow-x: hidden;
-  line-height: 1.7;
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.1rem; /* Crimson Text reads best slightly larger */
 }
 
 body.invitation-open {
